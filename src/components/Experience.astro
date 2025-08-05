@@ -1,0 +1,319 @@
+---
+const experiences = [
+  {
+    id: 1,
+    company: "Tech Innovation Inc.",
+    position: "Senior Full-Stack Developer",
+    period: "2022 - Present",
+    location: "San Francisco, CA",
+    description: "Led development of scalable web applications using React, Node.js, and cloud technologies. Architected microservices that improved system performance by 40%.",
+    technologies: ["React", "Node.js", "TypeScript", "AWS", "Docker", "GraphQL"],
+    achievements: [
+      "Reduced application load time by 60% through optimization",
+      "Mentored 5 junior developers",
+      "Led migration to microservices architecture"
+    ]
+  },
+  {
+    id: 2,
+    company: "Digital Solutions LLC",
+    position: "Frontend Developer",
+    period: "2020 - 2022",
+    location: "Remote",
+    description: "Developed responsive web applications and mobile-first designs. Collaborated with design teams to create pixel-perfect user interfaces.",
+    technologies: ["Vue.js", "SASS", "JavaScript", "Figma", "Jest", "Webpack"],
+    achievements: [
+      "Increased user engagement by 35%",
+      "Implemented automated testing reducing bugs by 50%",
+      "Created reusable component library"
+    ]
+  },
+  {
+    id: 3,
+    company: "StartupHub",
+    position: "Junior Developer",
+    period: "2019 - 2020",
+    location: "New York, NY",
+    description: "Built MVPs for various startups using modern web technologies. Gained experience in rapid prototyping and agile development methodologies.",
+    technologies: ["React", "Express.js", "MongoDB", "Firebase", "Git", "Agile"],
+    achievements: [
+      "Delivered 8+ MVPs within tight deadlines",
+      "Learned full-stack development fundamentals",
+      "Contributed to open-source projects"
+    ]
+  }
+];
+---
+
+<section id="experience" class="section-padding bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl sm:text-5xl font-bold gradient-text mb-6 gsap-fade-up">
+        Experience
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto gsap-fade-up">
+        A journey through my professional development, showcasing growth, achievements, and the technologies I've mastered along the way.
+      </p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative">
+      <!-- Timeline Line -->
+      <div class="absolute left-4 md:left-1/2 transform md:-translate-x-0.5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 to-accent-500 timeline-line"></div>
+
+      <!-- Experience Items -->
+      <div class="space-y-16">
+        {experiences.map((exp, index) => (
+          <div 
+            class={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} experience-item`}
+            data-index={index}
+          >
+            <!-- Timeline Dot -->
+            <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg timeline-dot z-10"></div>
+
+            <!-- Content Card -->
+            <div class={`w-full md:w-5/12 ml-12 md:ml-0 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+              <div class="glass-card rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 experience-card">
+                <!-- Company & Period -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-0">
+                    {exp.company}
+                  </h3>
+                  <span class="glass text-sm px-3 py-1 rounded-full text-primary-600 dark:text-primary-400 font-medium">
+                    {exp.period}
+                  </span>
+                </div>
+
+                <!-- Position & Location -->
+                <div class="mb-4">
+                  <h4 class="text-xl font-semibold text-primary-600 dark:text-primary-400 mb-1">
+                    {exp.position}
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    {exp.location}
+                  </p>
+                </div>
+
+                <!-- Description -->
+                <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                  {exp.description}
+                </p>
+
+                <!-- Achievements -->
+                <div class="mb-6">
+                  <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Key Achievements</h5>
+                  <ul class="space-y-2">
+                    {exp.achievements.map((achievement) => (
+                      <li class="flex items-start text-gray-600 dark:text-gray-400">
+                        <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <!-- Technologies -->
+                <div>
+                  <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Technologies Used</h5>
+                  <div class="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech) => (
+                      <span class="glass px-3 py-1 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-white/5 transition-all duration-300">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Skills Summary -->
+    <div class="mt-20 text-center">
+      <div class="glass-card rounded-2xl p-8 max-w-4xl mx-auto skills-summary">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Core Technologies & Skills</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="skill-category">
+            <h4 class="font-semibold text-primary-600 dark:text-primary-400 mb-3">Frontend</h4>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <li>React / Vue.js</li>
+              <li>TypeScript</li>
+              <li>Tailwind CSS</li>
+              <li>GSAP / Framer</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4 class="font-semibold text-primary-600 dark:text-primary-400 mb-3">Backend</h4>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <li>Node.js</li>
+              <li>Express.js</li>
+              <li>GraphQL</li>
+              <li>PostgreSQL</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4 class="font-semibold text-primary-600 dark:text-primary-400 mb-3">DevOps</h4>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <li>AWS / Azure</li>
+              <li>Docker</li>
+              <li>CI/CD</li>
+              <li>Kubernetes</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4 class="font-semibold text-primary-600 dark:text-primary-400 mb-3">Tools</h4>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <li>Git / GitHub</li>
+              <li>Figma</li>
+              <li>Jest / Cypress</li>
+              <li>Webpack / Vite</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Import GSAP
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Timeline line animation
+  gsap.fromTo('.timeline-line', 
+    { 
+      scaleY: 0,
+      transformOrigin: 'top'
+    },
+    {
+      scaleY: 1,
+      duration: 2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#experience',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse'
+      }
+    }
+  );
+
+  // Animate experience items
+  gsap.utils.toArray('.experience-item').forEach((item, index) => {
+    const card = item.querySelector('.experience-card');
+    const dot = item.querySelector('.timeline-dot');
+    
+    // Card animation
+    gsap.fromTo(card,
+      {
+        opacity: 0,
+        x: index % 2 === 0 ? -100 : 100,
+        y: 50
+      },
+      {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+
+    // Dot animation
+    gsap.fromTo(dot,
+      {
+        scale: 0,
+        rotation: 180
+      },
+      {
+        scale: 1,
+        rotation: 0,
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+  });
+
+  // Skills summary animation
+  gsap.fromTo('.skills-summary',
+    {
+      opacity: 0,
+      y: 100,
+      scale: 0.9
+    },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 1.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.skills-summary',
+        start: 'top 90%',
+        toggleActions: 'play none none reverse'
+      }
+    }
+  );
+
+  // Animate skill categories with stagger
+  gsap.fromTo('.skill-category',
+    {
+      opacity: 0,
+      y: 30
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.skills-summary',
+        start: 'top 90%',
+        toggleActions: 'play none none reverse'
+      }
+    }
+  );
+
+  // Header animations
+  gsap.fromTo('.gsap-fade-up',
+    {
+      opacity: 0,
+      y: 50
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.3,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#experience',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      }
+    }
+  );
+</script>

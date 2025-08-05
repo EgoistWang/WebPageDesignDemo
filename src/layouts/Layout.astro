@@ -1,0 +1,117 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Modern Portfolio - Showcasing innovative web development and design" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Meta tags for SEO -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body class="antialiased">
+    <!-- Progress bar -->
+    <div id="progress-bar" class="progress-bar"></div>
+    
+    <!-- Background gradient -->
+    <div class="fixed inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-purple-900/20 -z-10"></div>
+    
+    <!-- Animated background elements -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-400/30 to-accent-400/30 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-accent-400/30 to-primary-400/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-primary-300/20 to-accent-300/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
+    </div>
+    
+    <slot />
+    
+    <!-- Scroll to top button -->
+    <button
+      id="scroll-to-top"
+      class="scroll-indicator opacity-0 transition-opacity duration-300"
+      aria-label="Scroll to top"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
+
+    <script>
+      // Theme toggle functionality
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+
+      window.localStorage.setItem('theme', theme);
+
+      // Progress bar
+      const progressBar = document.getElementById('progress-bar');
+      const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+      function updateProgressBar() {
+        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        if (progressBar) {
+          progressBar.style.width = `${scrolled}%`;
+        }
+        
+        // Show/hide scroll to top button
+        if (scrollToTopBtn) {
+          if (window.scrollY > 300) {
+            scrollToTopBtn.classList.remove('opacity-0');
+            scrollToTopBtn.classList.add('opacity-100');
+          } else {
+            scrollToTopBtn.classList.remove('opacity-100');
+            scrollToTopBtn.classList.add('opacity-0');
+          }
+        }
+      }
+
+      window.addEventListener('scroll', updateProgressBar);
+      
+      // Scroll to top functionality
+      if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      // Initialize progress bar
+      updateProgressBar();
+    </script>
+  </body>
+</html>

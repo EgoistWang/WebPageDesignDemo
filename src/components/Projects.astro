@@ -1,0 +1,632 @@
+---
+const projects = [
+  {
+    id: 1,
+    title: "E-Commerce Platform",
+    category: "Full-Stack Development",
+    description: "Modern e-commerce solution with real-time inventory management, payment processing, and advanced analytics dashboard.",
+    image: "/api/placeholder/600/400",
+    technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis", "Docker"],
+    features: [
+      "Real-time inventory tracking",
+      "Multi-payment gateway integration",
+      "Advanced analytics dashboard",
+      "Mobile-responsive design",
+      "SEO optimization"
+    ],
+    github: "https://github.com/username/ecommerce-platform",
+    demo: "https://ecommerce-demo.example.com",
+    status: "Completed"
+  },
+  {
+    id: 2,
+    title: "AI-Powered Task Manager",
+    category: "AI/ML Application",
+    description: "Intelligent task management app that uses machine learning to predict task completion times and optimize scheduling.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Vue.js", "Python", "FastAPI", "TensorFlow", "MongoDB", "AWS"],
+    features: [
+      "AI-powered time estimation",
+      "Smart scheduling optimization",
+      "Natural language processing",
+      "Team collaboration tools",
+      "Performance analytics"
+    ],
+    github: "https://github.com/username/ai-task-manager",
+    demo: "https://task-manager-demo.example.com",
+    status: "In Development"
+  },
+  {
+    id: 3,
+    title: "Real-Time Chat Application",
+    category: "WebSocket Application",
+    description: "Scalable chat application with video calls, file sharing, and real-time collaboration features for remote teams.",
+    image: "/api/placeholder/600/400",
+    technologies: ["React", "Socket.io", "WebRTC", "Express.js", "MongoDB", "AWS S3"],
+    features: [
+      "Real-time messaging",
+      "Video/audio calls",
+      "File sharing & storage",
+      "Screen sharing",
+      "End-to-end encryption"
+    ],
+    github: "https://github.com/username/realtime-chat",
+    demo: "https://chat-demo.example.com",
+    status: "Completed"
+  },
+  {
+    id: 4,
+    title: "Data Visualization Dashboard",
+    category: "Data Analytics",
+    description: "Interactive dashboard for complex data visualization with real-time updates and customizable charts and graphs.",
+    image: "/api/placeholder/600/400",
+    technologies: ["D3.js", "React", "Express.js", "PostgreSQL", "WebSockets", "Chart.js"],
+    features: [
+      "Interactive data visualizations",
+      "Real-time data updates",
+      "Customizable dashboards",
+      "Export functionality",
+      "Multi-source data integration"
+    ],
+    github: "https://github.com/username/data-dashboard",
+    demo: "https://dashboard-demo.example.com",
+    status: "Completed"
+  },
+  {
+    id: 5,
+    title: "Blockchain Voting System",
+    category: "Blockchain Development",
+    description: "Secure and transparent voting system built on blockchain technology with smart contracts and voter verification.",
+    image: "/api/placeholder/600/400",
+    technologies: ["Solidity", "Web3.js", "React", "Ethereum", "IPFS", "MetaMask"],
+    features: [
+      "Blockchain-based voting",
+      "Smart contract security",
+      "Voter identity verification",
+      "Transparent vote counting",
+      "Immutable vote records"
+    ],
+    github: "https://github.com/username/blockchain-voting",
+    demo: "https://voting-demo.example.com",
+    status: "Prototype"
+  },
+  {
+    id: 6,
+    title: "Mobile Fitness Tracker",
+    category: "Mobile Development",
+    description: "Cross-platform mobile app for fitness tracking with social features, workout plans, and health analytics.",
+    image: "/api/placeholder/600/400",
+    technologies: ["React Native", "Node.js", "MongoDB", "Firebase", "HealthKit", "Google Fit"],
+    features: [
+      "Activity tracking",
+      "Social fitness challenges",
+      "Personalized workout plans",
+      "Health data analytics",
+      "Wearable device integration"
+    ],
+    github: "https://github.com/username/fitness-tracker",
+    demo: "https://fitness-demo.example.com",
+    status: "Completed"
+  }
+];
+---
+
+<section id="projects" class="section-padding">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl sm:text-5xl font-bold gradient-text mb-6 projects-title">
+        Featured Projects
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto projects-subtitle">
+        A showcase of my recent work, demonstrating expertise across various technologies and problem-solving approaches.
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12 filter-buttons">
+      <button class="filter-btn active" data-filter="all">
+        All Projects
+      </button>
+      <button class="filter-btn" data-filter="Full-Stack Development">
+        Full-Stack
+      </button>
+      <button class="filter-btn" data-filter="AI/ML Application">
+        AI/ML
+      </button>
+      <button class="filter-btn" data-filter="Mobile Development">
+        Mobile
+      </button>
+      <button class="filter-btn" data-filter="Blockchain Development">
+        Blockchain
+      </button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 projects-grid">
+      {projects.map((project) => (
+        <div 
+          class="project-card glass-card rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
+          data-category={project.category}
+          data-project-id={project.id}
+        >
+          <!-- Project Image -->
+          <div class="relative overflow-hidden group">
+            <img 
+              src={project.image}
+              alt={project.title}
+              class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute top-4 right-4">
+              <span class={`px-3 py-1 rounded-full text-xs font-medium ${
+                project.status === 'Completed' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                project.status === 'In Development' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
+                'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
+              }`}>
+                {project.status}
+              </span>
+            </div>
+            <!-- Overlay buttons -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="flex space-x-4">
+                <a 
+                  href={project.demo} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="glass px-4 py-2 rounded-lg text-white hover:bg-white/20 transition-all duration-300 flex items-center space-x-2"
+                  onClick="event.stopPropagation()"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                  <span>Demo</span>
+                </a>
+                <a 
+                  href={project.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="glass px-4 py-2 rounded-lg text-white hover:bg-white/20 transition-all duration-300 flex items-center space-x-2"
+                  onClick="event.stopPropagation()"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                  </svg>
+                  <span>Code</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Content -->
+          <div class="p-6">
+            <div class="mb-3">
+              <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">
+                {project.category}
+              </span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
+              {project.title}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+              {project.description}
+            </p>
+            
+            <!-- Technologies -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.technologies.slice(0, 3).map((tech) => (
+                <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md">
+                  {tech}
+                </span>
+              ))}
+              {project.technologies.length > 3 && (
+                <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md">
+                  +{project.technologies.length - 3} more
+                </span>
+              )}
+            </div>
+
+            <!-- Learn More Button -->
+            <button class="w-full btn-secondary text-center">
+              Learn More
+              <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Project Modal -->
+<div id="project-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="glass-card rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-content">
+    <div class="p-8">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between mb-6">
+        <h3 id="modal-title" class="text-3xl font-bold gradient-text"></h3>
+        <button id="close-modal" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Project Image -->
+        <div class="space-y-4">
+          <img id="modal-image" src="" alt="" class="w-full h-64 object-cover rounded-xl">
+          <div class="flex space-x-4">
+            <a id="modal-demo" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary flex-1 text-center">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+              Live Demo
+            </a>
+            <a id="modal-github" href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary flex-1 text-center">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              View Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Details -->
+        <div class="space-y-6">
+          <div>
+            <span id="modal-category" class="text-sm text-primary-600 dark:text-primary-400 font-medium"></span>
+            <p id="modal-description" class="text-gray-600 dark:text-gray-400 mt-2"></p>
+          </div>
+
+          <!-- Features -->
+          <div>
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Key Features</h4>
+            <ul id="modal-features" class="space-y-2"></ul>
+          </div>
+
+          <!-- Technologies -->
+          <div>
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Technologies Used</h4>
+            <div id="modal-technologies" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .filter-btn {
+    @apply px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300;
+  }
+
+  .filter-btn.active {
+    @apply bg-gradient-to-r from-primary-500 to-accent-500 text-white border-transparent;
+  }
+
+  .modal-content {
+    animation: modalSlideUp 0.3s ease-out;
+  }
+
+  @keyframes modalSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animation setup
+  function initProjectAnimations() {
+    // Animate section header
+    gsap.fromTo('.projects-title',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#projects',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+
+    gsap.fromTo('.projects-subtitle',
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#projects',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+
+    // Animate filter buttons
+    gsap.fromTo('.filter-buttons',
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.4,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#projects',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+
+    // Animate project cards
+    gsap.fromTo('.project-card',
+      { opacity: 0, y: 50, scale: 0.9 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.projects-grid',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+  }
+
+  // Project filtering
+  function initProjectFiltering() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter projects with animation
+        projectCards.forEach(card => {
+          const category = card.dataset.category;
+          const shouldShow = filter === 'all' || category === filter;
+          
+          gsap.to(card, {
+            opacity: shouldShow ? 1 : 0,
+            scale: shouldShow ? 1 : 0.8,
+            y: shouldShow ? 0 : 20,
+            duration: 0.4,
+            ease: 'power2.out',
+            onComplete: () => {
+              card.style.display = shouldShow ? 'block' : 'none';
+            }
+          });
+        });
+      });
+    });
+  }
+
+  // Project modal functionality
+  function initProjectModal() {
+    const modal = document.getElementById('project-modal');
+    const closeModal = document.getElementById('close-modal');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    // Project data - passed from Astro frontmatter
+    const projects = [
+      {
+        id: 1,
+        title: "E-Commerce Platform",
+        category: "Full-Stack Development",
+        description: "Modern e-commerce solution with real-time inventory management, payment processing, and advanced analytics dashboard.",
+        image: "/api/placeholder/600/400",
+        technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis", "Docker"],
+        features: [
+          "Real-time inventory tracking",
+          "Multi-payment gateway integration",
+          "Advanced analytics dashboard",
+          "Mobile-responsive design",
+          "SEO optimization"
+        ],
+        github: "https://github.com/username/ecommerce-platform",
+        demo: "https://ecommerce-demo.example.com",
+        status: "Completed"
+      },
+      {
+        id: 2,
+        title: "AI-Powered Task Manager",
+        category: "AI/ML Application",
+        description: "Intelligent task management app that uses machine learning to predict task completion times and optimize scheduling.",
+        image: "/api/placeholder/600/400",
+        technologies: ["Vue.js", "Python", "FastAPI", "TensorFlow", "MongoDB", "AWS"],
+        features: [
+          "AI-powered time estimation",
+          "Smart scheduling optimization",
+          "Natural language processing",
+          "Team collaboration tools",
+          "Performance analytics"
+        ],
+        github: "https://github.com/username/ai-task-manager",
+        demo: "https://task-manager-demo.example.com",
+        status: "In Development"
+      },
+      {
+        id: 3,
+        title: "Real-Time Chat Application",
+        category: "WebSocket Application",
+        description: "Scalable chat application with video calls, file sharing, and real-time collaboration features for remote teams.",
+        image: "/api/placeholder/600/400",
+        technologies: ["React", "Socket.io", "WebRTC", "Express.js", "MongoDB", "AWS S3"],
+        features: [
+          "Real-time messaging",
+          "Video/audio calls",
+          "File sharing & storage",
+          "Screen sharing",
+          "End-to-end encryption"
+        ],
+        github: "https://github.com/username/realtime-chat",
+        demo: "https://chat-demo.example.com",
+        status: "Completed"
+      },
+      {
+        id: 4,
+        title: "Data Visualization Dashboard",
+        category: "Data Analytics",
+        description: "Interactive dashboard for complex data visualization with real-time updates and customizable charts and graphs.",
+        image: "/api/placeholder/600/400",
+        technologies: ["D3.js", "React", "Express.js", "PostgreSQL", "WebSockets", "Chart.js"],
+        features: [
+          "Interactive data visualizations",
+          "Real-time data updates",
+          "Customizable dashboards",
+          "Export functionality",
+          "Multi-source data integration"
+        ],
+        github: "https://github.com/username/data-dashboard",
+        demo: "https://dashboard-demo.example.com",
+        status: "Completed"
+      },
+      {
+        id: 5,
+        title: "Blockchain Voting System",
+        category: "Blockchain Development",
+        description: "Secure and transparent voting system built on blockchain technology with smart contracts and voter verification.",
+        image: "/api/placeholder/600/400",
+        technologies: ["Solidity", "Web3.js", "React", "Ethereum", "IPFS", "MetaMask"],
+        features: [
+          "Blockchain-based voting",
+          "Smart contract security",
+          "Voter identity verification",
+          "Transparent vote counting",
+          "Immutable vote records"
+        ],
+        github: "https://github.com/username/blockchain-voting",
+        demo: "https://voting-demo.example.com",
+        status: "Prototype"
+      },
+      {
+        id: 6,
+        title: "Mobile Fitness Tracker",
+        category: "Mobile Development",
+        description: "Cross-platform mobile app for fitness tracking with social features, workout plans, and health analytics.",
+        image: "/api/placeholder/600/400",
+        technologies: ["React Native", "Node.js", "MongoDB", "Firebase", "HealthKit", "Google Fit"],
+        features: [
+          "Activity tracking",
+          "Social fitness challenges",
+          "Personalized workout plans",
+          "Health data analytics",
+          "Wearable device integration"
+        ],
+        github: "https://github.com/username/fitness-tracker",
+        demo: "https://fitness-demo.example.com",
+        status: "Completed"
+      }
+    ];
+
+    projectCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; // Don't open modal if clicking on links
+        
+        const projectId = parseInt(card.dataset.projectId);
+        const project = projects.find(p => p.id === projectId);
+        
+        if (project) {
+          openModal(project);
+        }
+      });
+    });
+
+    function openModal(project) {
+      document.getElementById('modal-title').textContent = project.title;
+      document.getElementById('modal-image').src = project.image;
+      document.getElementById('modal-image').alt = project.title;
+      document.getElementById('modal-category').textContent = project.category;
+      document.getElementById('modal-description').textContent = project.description;
+      document.getElementById('modal-demo').href = project.demo;
+      document.getElementById('modal-github').href = project.github;
+
+      // Features
+      const featuresList = document.getElementById('modal-features');
+      featuresList.innerHTML = project.features.map(feature => 
+        `<li class="flex items-start text-gray-600 dark:text-gray-400">
+          <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          ${feature}
+        </li>`
+      ).join('');
+
+      // Technologies
+      const techContainer = document.getElementById('modal-technologies');
+      techContainer.innerHTML = project.technologies.map(tech => 
+        `<span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium">${tech}</span>`
+      ).join('');
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalHandler() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    closeModal.addEventListener('click', closeModalHandler);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModalHandler();
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModalHandler();
+      }
+    });
+  }
+
+  // Initialize everything
+  document.addEventListener('DOMContentLoaded', () => {
+    initProjectAnimations();
+    initProjectFiltering();
+    initProjectModal();
+  });
+</script>
