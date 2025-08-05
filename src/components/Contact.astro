@@ -26,7 +26,12 @@
         <div class="glass-strong rounded-2xl p-8">
           <h3 class="text-2xl font-bold mb-6">Send a Message</h3>
           
-          <form id="contact-form" class="space-y-6">
+          <form 
+            id="contact-form" 
+            action="https://formspree.io/f/YOUR_FORM_ID" 
+            method="POST"
+            class="space-y-6"
+          >
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div class="form-group">
                 <label for="firstName" class="block text-sm font-medium mb-2">First Name</label>
@@ -366,42 +371,31 @@
       btnIcon.classList.add('hidden');
       loadingIcon.classList.remove('hidden');
 
-      // Get form data
+      // Simple form validation - Formspree will handle the actual submission
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+      const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+      let isValid = true;
 
-      try {
-        // Send to backend
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-          form.reset();
-          
-          // Animate form reset
-          gsap.fromTo('.form-group', 
-            { scale: 1.05, opacity: 0.7 },
-            { scale: 1, opacity: 1, duration: 0.3, stagger: 0.05 }
-          );
-        } else {
-          throw new Error('Failed to send message');
+      for (const field of requiredFields) {
+        if (!formData.get(field)) {
+          isValid = false;
+          break;
         }
-      } catch (error) {
-        console.error('Error sending message:', error);
-        showNotification('Failed to send message. Please try again or contact me directly.', 'error');
-      } finally {
-        // Reset button state
+      }
+
+      if (!isValid) {
+        showNotification('Please fill in all required fields.', 'error');
+        // Reset button
         submitBtn.disabled = false;
         btnText.textContent = 'Send Message';
         btnIcon.classList.remove('hidden');
         loadingIcon.classList.add('hidden');
+        return;
       }
+
+      // Let the form submit naturally to Formspree
+      showNotification('Sending message...', 'success');
+      // The form will now submit to Formspree automatically
     });
 
     // Form validation with real-time feedback
